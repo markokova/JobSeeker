@@ -1,5 +1,8 @@
 package com.example.jobseeker.di
 
+import com.example.jobseeker.data.model.Job
+import com.example.jobseeker.data.repository.JobRepository
+import com.example.jobseeker.data.repository.UserRepository
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -21,4 +24,20 @@ object AppModule {
     @Provides
     @Singleton
     fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
+
+    @Provides
+    @Singleton
+    fun provideJobRepository(
+        db: FirebaseFirestore,
+        userRepository: UserRepository
+    ): JobRepository = JobRepository(db, userRepository)
+
+    @Provides
+    @Singleton
+    fun provideUserRepository(
+        db: FirebaseFirestore,
+        auth: FirebaseAuth
+    ): UserRepository = UserRepository(db, auth)
+
+
 }
