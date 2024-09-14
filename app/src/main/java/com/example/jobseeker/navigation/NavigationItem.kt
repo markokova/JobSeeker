@@ -14,12 +14,12 @@ sealed class NavigationItem(
     val label: String
 ) {
     data object Job : NavigationItem("Home", Icons.Default.Home, "Home")
-    data object Search : NavigationItem("Search", Icons.Default.Search, "Search")
+    //data object Search : NavigationItem("Search", Icons.Default.Search, "Search")
     data object Favorites : NavigationItem("Favorites", Icons.Default.FavoriteBorder, "Favorite")
     data object Profile : NavigationItem("Profile", Icons.Default.Person, "Profile")
     data object NewJob : NavigationItem("NewJob", Icons.Default.Add, "New")
 
     companion object {
-        val items = listOf(Job, Search, Favorites, Profile, NewJob)
+        val items = listOf(Job, Favorites, Profile, NewJob)
     }
 }
