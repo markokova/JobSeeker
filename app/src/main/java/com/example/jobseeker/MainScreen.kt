@@ -35,12 +35,10 @@ import com.example.jobseeker.presentation.favorites.FavoritesScreen
 import com.example.jobseeker.presentation.favorites.FavoritesViewModel
 import com.example.jobseeker.presentation.job.JobDetailsScreen
 import com.example.jobseeker.presentation.login.LoginScreen
-import com.example.jobseeker.presentation.login.LoginViewModel
 import com.example.jobseeker.presentation.job.JobScreen
 import com.example.jobseeker.presentation.job.JobViewModel
 import com.example.jobseeker.presentation.job_creation.JobCreationScreen
 import com.example.jobseeker.presentation.login.RegistrationScreen
-import com.example.jobseeker.presentation.search.SearchScreen
 import com.example.jobseeker.presentation.user.UserProfileScreen
 import com.example.jobseeker.presentation.user.UserViewModel
 
@@ -62,9 +60,6 @@ enum class Destinations() {
     }
 }
 
-
-//TODO - create JobDetails screen, change everything about JobScreen to HomeScreen (Maybe?), to JobDetails screen you can
-//navigate from homeScreen by clicking on job card or by favorites screen by doing the same.
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun JobSeekerApp(
@@ -123,15 +118,14 @@ fun JobSeekerApp(
 
         }
     ) { innerPadding ->
-        //TODO - startDestination should depend on users login status, if he is already loged in then it should be Destinations.Job.name
         NavHost(navController = navController, startDestination = Destinations.Login.name, Modifier.padding(innerPadding)){
             composable(Destinations.Login.name){
                 LoginScreen(userViewModel, navController)
             }
+
             composable(Destinations.Registration.name){
                 RegistrationScreen(userViewModel, navController)
             }
-            //TODO - add on button click/on item click za svaki screen, kad se button klikne onda ide navController.navigate(
             composable(Destinations.Home.name){
                 JobScreen(jobViewModel, navController)
             }
@@ -140,15 +134,10 @@ fun JobSeekerApp(
                 JobCreationScreen(jobViewModel)
             }
 
-            //TODO - use JobViewModel?
             composable(Destinations.Favorites.name){
                 val viewModel = hiltViewModel<FavoritesViewModel>()
                 FavoritesScreen(viewModel, navController)
             }
-
-//            composable(Destinations.Search.name){
-//                SearchScreen(jobViewModel)
-//            }
 
             composable(Destinations.Profile.name){
                 UserProfileScreen(userViewModel, navController)
