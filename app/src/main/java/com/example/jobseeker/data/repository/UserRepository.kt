@@ -137,7 +137,6 @@ class UserRepository @Inject constructor(
         }
     }
 
-    //TODO - maybe make it asynchronous?
      fun addToFavorite(jobId: String){
         updateDocumentArray("favoriteJobIds", jobId)
     }

@@ -45,9 +45,6 @@ class UserViewModel @Inject constructor(
         repository.signOut()
     }
 
-    //TODO - handle exceptions in register function.
-    //Work with callback way - use state in viewModel class and observe the state in ScreenClass OR
-    //return the value and handle it in ScreenClass
     fun register(context: Context, user: User, password: String){
         viewModelScope.launch {
             _isRegistrationSuccessful.value = repository.register(context, user, password)
